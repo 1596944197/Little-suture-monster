@@ -1,0 +1,18 @@
+{
+  "name": "hot-update",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "ts-node serve.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.8.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.3"
+  }
+}

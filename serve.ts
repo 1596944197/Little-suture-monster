@@ -15,7 +15,7 @@ const dynamicResourceList = new Proxy([] as string[], {
 })
 const UPDATE = 'update'
 const CLEAR = 'clear'
-let wsServers: Map<WebSocket, WebSocket> = new Map()
+const wsServers: Map<WebSocket, WebSocket> = new Map()
 let i = 0
 
 const clearTemp = () => writeFileSync(cacheTempPath, '')
@@ -57,7 +57,8 @@ function assignment(ws: WebSocket & { id: number }) {
   ws.onclose = () => (
     wsServers.delete(ws),
     console.log(`id：${ws.id},用户退出`),
-    dynamicResourceList.length = 0
+    dynamicResourceList.length = 0,
+    clearTemp()
   )
 }
 // # socket部分结束
@@ -76,8 +77,8 @@ const htpServer = createServer((req, res) => {
       const temp = readFileSync(template, 'utf-8')
       appendFileSync(cacheTempPath, `
       ${temp.toString()}
-      \n<script>
-      ${main.toString()}
+      \n<script type="module">
+      ${main}
       </script>`)
       return res.end(readFileSync(cacheTempPath))
     case UrlList.ICON:
@@ -107,16 +108,18 @@ htpServer.listen(3000, () => console.log('htp服务开启'))
 
 
 // # 文件监听部分
+let timer: NodeJS.Timeout | null = null
 function watchFile(target: string) {
-  let timer: NodeJS.Timeout | null = null
   watch(target, (type) => {
     if (type === 'rename') return new Error('文件缺失')
     if (timer) return
     timer = setTimeout(() => {
       wsServers.forEach(item => item.send(UPDATE))
       timer = null
-      clearTemp()
     }, 100);
   })
 }
 watchFile(template)
+// # 文件监听部分结束
+
+

@@ -4,8 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "watch":"tsc -p tsconfig.json --watch",
-    "dev": "electron ./dist/main.js"
+    "watch": "tsc -p tsconfig.json --watch",
+    "dev": "electron ./dist/main.js",
   },
   "author": "",
   "license": "ISC",

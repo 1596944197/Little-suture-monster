@@ -1,0 +1,14 @@
+{
+  "name": "guide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.ts",
+  "scripts": {
+    "dev": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "20.0.1"
+  }
+}

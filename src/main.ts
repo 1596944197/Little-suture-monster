@@ -1,8 +1,10 @@
-import { app, BrowserWindow,ipcMain } from 'electron';
+import { app, BrowserWindow, ipcMain, desktopCapturer, dialog } from 'electron';
 import path from 'path';
 
 
-const createWindow = () => {
+ipcMain.handle('ping', () => ({ a: 1, b: 2, c: 3 }));
+
+const createWindow = async () => {
 	const win = new BrowserWindow({
 		width: 1080,
 		height: 700,
@@ -11,13 +13,27 @@ const createWindow = () => {
 			preload: path.join(__dirname, 'preload.js')
 		}
 	});
-	ipcMain.handle('ping', () => ({a:1,b:2,c:3}));
+
+	const data = await dialog.showOpenDialog({
+		properties: ['openFile', 'multiSelections'],
+		filters: [
+			{
+				name: 'Images', extensions: ['jpg', 'png', 'gif']
+			}
+		]
+	})
+	win.webContents.send('showImages', data.filePaths)
+
+	win.webContents.send('MainProcess', win)
+
+	win.webContents.toggleDevTools()
 	win.loadFile('../index.html');
 };
 
-app.whenReady().then(()=>{
+app.whenReady().then(() => {
 	createWindow();
 	setTimeout(() => {
 		app.quit();
-	}, 300000);
+	}, 3000000);
 });
+

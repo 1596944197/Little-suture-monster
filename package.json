@@ -5,12 +5,15 @@
   "main": "main.js",
   "scripts": {
     "watch": "tsc -p tsconfig.json --watch",
-    "dev": "electron ./dist/main.js",
+    "dev": "electron ./dist/main.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
     "electron": "20.0.1",
+    "eslint": "^8.21.0",
     "typescript": "^4.7.4"
   }
 }

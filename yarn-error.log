@@ -1,8 +1,8 @@
 Arguments: 
-  E:\node\node.exe E:\node\node_modules\yarn\bin\yarn.js add --dev @electron-forge/cli
+  E:\node\node.exe E:\node\node_modules\yarn\bin\yarn.js add -D eslint
 
 PATH: 
-  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;E:\nvm;E:\node;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\15969\AppData\Local\Microsoft\WindowsApps;E:\Git\bin;C:\Users\15969\AppData\Local\Programs\Microsoft VS Code\bin;E:\dart-sdk\bin;E:\flutter\bin;E:\AndroidSDK\bin
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;E:\nvm;E:\node;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\15969\AppData\Local\Microsoft\WindowsApps;E:\nvm;E:\node;E:\Git\bin;C:\Users\15969\AppData\Local\Programs\Microsoft VS Code\bin;E:\dart-sdk\bin;E:\flutter\bin;E:\AndroidSDK\bin;
 
 Yarn version: 
   1.22.18
@@ -23,11 +23,8 @@ npm manifest:
     "description": "",
     "main": "main.js",
     "scripts": {
-      "watch":"tsc -p tsconfig.json --watch",
-      "dev": "electron ./dist/main.js",
-      "start": "electron-forge start",
-      "package": "electron-forge package",
-      "make": "electron-forge make"
+      "watch": "tsc -p tsconfig.json --watch",
+      "dev": "electron ./dist/main.js"
     },
     "author": "",
     "license": "ISC",

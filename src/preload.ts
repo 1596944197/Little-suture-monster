@@ -18,3 +18,5 @@ ipcRenderer.on('showPicture', async (_, filePaths: string[]) => {
 		document.body.append(img);
 	}
 });
+
+window.onload = () => document.body.style.margin = '0';

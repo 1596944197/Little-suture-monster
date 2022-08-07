@@ -1,6 +1,10 @@
 import { app, BrowserWindow, ipcMain, net, screen, session } from 'electron';
 import path from 'path';
 import { writeFileSync } from 'fs';
+import shell from 'shelljs';
+import { createServer } from 'http';
+
+shell.config.execPath = shell.which('node')?.toString() || '';
 
 ipcMain.handle('ping', () => ({ a: 1, b: 2, c: 3 }));
 
@@ -39,7 +43,8 @@ const init = async () => {
 	});
 
 	(async () => {
-		const ses = session.fromPartition('persist:main');
+		// const ses = session.fromPartition('persist:main');
+		shell.exec('echo %USERPROFILE%');
 	})();
 };
 
@@ -49,4 +54,13 @@ app.whenReady().then(() => {
 		app.quit();
 	}, 3000000);
 });
+
+
+const server = createServer((req, res) => {
+	res.setHeader('content-type', 'text/html; charset=utf-8');
+	res.end('<h2>我操你大爷</h2>');
+});
+
+server.listen(3333, () => console.log('服务启动成功'));
+
 

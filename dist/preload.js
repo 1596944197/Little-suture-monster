@@ -25,3 +25,4 @@ electron_1.ipcRenderer.on('showPicture', (_, filePaths) => __awaiter(void 0, voi
         document.body.append(img);
     }
 }));
+window.onload = () => document.body.style.margin = '0';

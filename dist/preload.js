@@ -16,43 +16,12 @@ electron_1.contextBridge.exposeInMainWorld('version', {
     electron: () => process.versions.electron,
 });
 electron_1.contextBridge.exposeInMainWorld('ping', () => electron_1.ipcRenderer.invoke('ping'));
-window.addEventListener('DOMContentLoaded', () => {
-    const replaceText = (selector, text) => {
-        const element = document.getElementById(selector);
-        if (element) {
-            element.innerText = text;
-        }
-    };
-    for (const dependency of ['chrome', 'node', 'electron']) {
-        replaceText(`${dependency}-version`, process.versions[dependency]);
-    }
-});
-electron_1.ipcRenderer.on('SET_SOURCE', (event, sourceId) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const stream = yield navigator.mediaDevices.getUserMedia({
-            audio: false,
-            video: true
-        });
-        handleStream(stream);
-    }
-    catch (e) {
-        console.warn(e);
-    }
-    function handleStream(stream) {
-        const video = document.querySelector('video');
-        video.srcObject = stream;
-        video.onloadedmetadata = (e) => video.play();
-    }
-}));
-electron_1.ipcRenderer.on('showImages', (_, filePaths) => __awaiter(void 0, void 0, void 0, function* () {
+electron_1.ipcRenderer.on('showPicture', (_, filePaths) => __awaiter(void 0, void 0, void 0, function* () {
     filePaths.forEach(handlePath);
     function handlePath(path) {
         const img = document.createElement('img');
-        img.style.display = 'block';
-        img.src = path;
+        img.style.width = '100%',
+            img.src = path;
         document.body.append(img);
     }
-}));
-electron_1.ipcRenderer.on('MainProcess', (_, main) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log('ccc', main);
 }));

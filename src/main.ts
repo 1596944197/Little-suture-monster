@@ -44,8 +44,24 @@ const init = async () => {
 
 	(async () => {
 		// const ses = session.fromPartition('persist:main');
-		shell.exec('echo %USERPROFILE%');
-	})();
+
+		const host = 'http://127.0.0.1:3333';
+
+		const setProxy = (host: string) => {
+			shell.exec('reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyEnable /t REG_DWORD /d 1 /f');
+			shell.exec(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyServer /t REG_SZ /d ${host} /f`);
+			shell.exec('netsh winhttp import proxy source=ie');
+			shell.exec(`netsh winhttp set proxy ${host}`);
+		};
+
+		const deleteProxy = () => {
+			shell.exec('reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyEnable /f');
+			shell.exec('reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyServer /f');
+			shell.exec('netsh winhttp reset proxy');
+		};
+
+		const getProxy = () => shell.exec('reg query "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"');
+	});
 };
 
 app.whenReady().then(() => {

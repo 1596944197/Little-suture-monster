@@ -255,6 +255,11 @@ balanced-match@^1.0.0:
   resolved "https://registry.npmmirror.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
+bluebird@~2.3.11:
+  version "2.3.11"
+  resolved "https://registry.npmmirror.com/bluebird/-/bluebird-2.3.11.tgz#15bb78ed32abf27b090640c0f85e4b91f615c8b6"
+  integrity sha512-dszL4hhVsXR4sgpEfFoMho96Tt1J10i8k3v6X6gj4e8tXYLL1hrNWWUv0HAJcsjpo9Vwsvevj3NJeEIJeZIxgA==
+
 boolean@^3.0.1:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/boolean/-/boolean-3.2.0.tgz#9e5294af4e98314494cbb17979fa54ca159f116b"
@@ -1003,6 +1008,11 @@ minimatch@^3.0.4, minimatch@^3.1.1, minimatch@^3.1.2:
   dependencies:
     brace-expansion "^1.1.7"
 
+minimist@~0.0.1:
+  version "0.0.10"
+  resolved "https://registry.npmmirror.com/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
+  integrity sha512-iotkTvxc+TwOm5Ieim8VnSNvCDjCK9S8G3scJ50ZthspSxa7jx50jkhYduuAtAjvfDUwSgOwf8+If99AlOEhyw==
+
 ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
@@ -1012,6 +1022,14 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmmirror.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
+
+node-windows@~0.1.7:
+  version "0.1.14"
+  resolved "https://registry.npmmirror.com/node-windows/-/node-windows-0.1.14.tgz#31bb0503da3bc637f2bfaa8b266640a2e92d891f"
+  integrity sha512-2sz0i+ckeX/+22Z4KcDVis1ukyGOYZWx2WG9nQYauUwzIxEye5QcMrExkH7OaRSHkwM5bN/jesxsiQqkUb1O/w==
+  dependencies:
+    optimist "~0.6.0"
+    xml "0.0.12"
 
 normalize-url@^4.1.0:
   version "4.5.1"
@@ -1037,6 +1055,14 @@ once@^1.3.0, once@^1.3.1, once@^1.4.0:
   integrity sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==
   dependencies:
     wrappy "1"
+
+optimist@~0.6.0, optimist@~0.6.1:
+  version "0.6.1"
+  resolved "https://registry.npmmirror.com/optimist/-/optimist-0.6.1.tgz#da3ea74686fa21a19a111c326e90eb15a0196686"
+  integrity sha512-snN4O4TkigujZphWLN0E//nQmm7790RYaE53DdL7ZYwee2D8DDo9/EyYiKUfN3rneWUjhJnueija3G9I2i0h3g==
+  dependencies:
+    minimist "~0.0.1"
+    wordwrap "~0.0.2"
 
 optionator@^0.9.1:
   version "0.9.1"
@@ -1304,6 +1330,16 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.npmmirror.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+system-proxy@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmmirror.com/system-proxy/-/system-proxy-2.0.0.tgz#b3be1519410a7ffabc464991e559605fe38bc8ae"
+  integrity sha512-2ye037UWX/45bSZL90/u/srZWNV4C3Zez53ZCcBK+pI8H6ZjbME3d3u0J2VWTUEq7jfk3XiK6wmZ9IEsBGj3yQ==
+  dependencies:
+    bluebird "~2.3.11"
+    optimist "~0.6.1"
+  optionalDependencies:
+    node-windows "~0.1.7"
+
 text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.npmmirror.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
@@ -1396,10 +1432,20 @@ word-wrap@^1.2.3:
   resolved "https://registry.npmmirror.com/word-wrap/-/word-wrap-1.2.3.tgz#610636f6b1f703891bd34771ccb17fb93b47079c"
   integrity sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
 
+wordwrap@~0.0.2:
+  version "0.0.3"
+  resolved "https://registry.npmmirror.com/wordwrap/-/wordwrap-0.0.3.tgz#a3d5da6cd5c0bc0008d37234bbaf1bed63059107"
+  integrity sha512-1tMA907+V4QmxV7dbRvb4/8MaRALK6q9Abid3ndMYnbyo8piisCmeONVqVSXqQA3KaP4SLt5b7ud6E2sqP8TFw==
+
 wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==
+
+xml@0.0.12:
+  version "0.0.12"
+  resolved "https://registry.npmmirror.com/xml/-/xml-0.0.12.tgz#f08b347109912be00285785f46f15ad8e50a5f67"
+  integrity sha512-vXz2nTtS+bQYemYFzbTxjlmdMOmIhmP+frdnJi3M2Ul/ezrwcW9IYwiwqvecY3PtHNXGKBDrA+DNAEky0zY7Xg==
 
 yallist@^4.0.0:
   version "4.0.0"

@@ -54,8 +54,20 @@ const init = () => __awaiter(void 0, void 0, void 0, function* () {
     });
     (() => __awaiter(void 0, void 0, void 0, function* () {
         // const ses = session.fromPartition('persist:main');
-        shelljs_1.default.exec('echo %USERPROFILE%');
-    }))();
+        const host = 'http://127.0.0.1:3333';
+        const setProxy = (host) => {
+            shelljs_1.default.exec('reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyEnable /t REG_DWORD /d 1 /f');
+            shelljs_1.default.exec(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyServer /t REG_SZ /d ${host} /f`);
+            shelljs_1.default.exec('netsh winhttp import proxy source=ie');
+            shelljs_1.default.exec(`netsh winhttp set proxy ${host}`);
+        };
+        const deleteProxy = () => {
+            shelljs_1.default.exec('reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyEnable /f');
+            shelljs_1.default.exec('reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyServer /f');
+            shelljs_1.default.exec('netsh winhttp reset proxy');
+        };
+        const getProxy = () => shelljs_1.default.exec('reg query "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"');
+    }));
 });
 electron_1.app.whenReady().then(() => {
     init();
@@ -64,7 +76,8 @@ electron_1.app.whenReady().then(() => {
     }, 3000000);
 });
 const server = (0, http_1.createServer)((req, res) => {
+    const getProxy = () => shelljs_1.default.exec('reg query "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"');
     res.setHeader('content-type', 'text/html; charset=utf-8');
-    res.end('<h2>我操你大爷</h2>');
+    res.end(getProxy());
 });
 server.listen(3333, () => console.log('服务启动成功'));

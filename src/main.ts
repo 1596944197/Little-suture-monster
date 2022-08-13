@@ -1,15 +1,16 @@
-import { app, BrowserWindow, ipcMain, net, screen, session } from 'electron';
+import { app, BrowserWindow, ipcMain, net, screen } from 'electron';
 import path from 'path';
 import { writeFileSync } from 'fs';
-import shell from 'shelljs';
-import { createServer } from 'http';
+import { exec } from 'child_process';
+import server from './httpServer';
 
-shell.config.execPath = shell.which('node')?.toString() || '';
+
+server();
 
 ipcMain.handle('ping', () => ({ a: 1, b: 2, c: 3 }));
 
 const init = async () => {
-	const { width, height } = screen.getPrimaryDisplay().workAreaSize;
+	const { width, height } = screen.getPrimaryDisplay().size;
 	const win = new BrowserWindow({
 		width,
 		height,
@@ -48,19 +49,21 @@ const init = async () => {
 		const host = 'http://127.0.0.1:3333';
 
 		const setProxy = (host: string) => {
-			shell.exec('reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyEnable /t REG_DWORD /d 1 /f');
-			shell.exec(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyServer /t REG_SZ /d ${host} /f`);
-			shell.exec('netsh winhttp import proxy source=ie');
-			shell.exec(`netsh winhttp set proxy ${host}`);
+			exec('reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyEnable /t REG_DWORD /d 1 /f');
+			exec(`reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyServer /t REG_SZ /d ${host} /f`);
+			// exec('netsh winhttp import proxy source=ie');
+			// exec(`netsh winhttp set proxy ${host}`);
 		};
 
 		const deleteProxy = () => {
-			shell.exec('reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyEnable /f');
-			shell.exec('reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyServer /f');
-			shell.exec('netsh winhttp reset proxy');
+			exec('reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyEnable /f');
+			exec('reg delete "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyServer /f');
+			exec('netsh winhttp reset proxy');
 		};
 
-		const getProxy = () => shell.exec('reg query "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"');
+		const getProxy = () => exec('reg query "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"');
+
+		setProxy(host);
 	});
 };
 
@@ -70,13 +73,4 @@ app.whenReady().then(() => {
 		app.quit();
 	}, 3000000);
 });
-
-
-const server = createServer((req, res) => {
-	res.setHeader('content-type', 'text/html; charset=utf-8');
-	res.end('<h2>我操你大爷</h2>');
-});
-
-server.listen(3333, () => console.log('服务启动成功'));
-
 

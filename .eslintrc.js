@@ -16,6 +16,7 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        "semi": 2
+        "semi": 2,
+        '@typescript-eslint/no-var-requires': 0
     }
 }

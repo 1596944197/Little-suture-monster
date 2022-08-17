@@ -12,6 +12,7 @@ specifiers:
   react-dom: ^18.2.0
   typescript: ^4.7.4
   vite: ^3.0.8
+  vite-plugin-electron: ^0.9.0
 
 dependencies:
   react: 18.2.0
@@ -27,6 +28,7 @@ devDependencies:
   less: 4.1.3
   typescript: 4.7.4
   vite: 3.0.8_less@4.1.3
+  vite-plugin-electron: 0.9.0
 
 packages:
 
@@ -1882,6 +1884,16 @@ packages:
 
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
+    dev: true
+
+  /vite-plugin-electron-renderer/0.9.0:
+    resolution: {integrity: sha512-Vc9rB3i0zlw32n5UGfoLmHAOZdH0ZbbA+tI0TPn36HbwXtmsfu+LVLqeccZh88iaQ3VJIm00rUDGMvswN2PLRg==}
+    dev: true
+
+  /vite-plugin-electron/0.9.0:
+    resolution: {integrity: sha512-mN6dpJS74r7p55RAdJUvBuJaTXbHCEY+0m3zTisUm78s+NTwtgq1otkcticOh1g/N5pg/T/bWRbzbHHQ6JAXsA==}
+    dependencies:
+      vite-plugin-electron-renderer: 0.9.0
     dev: true
 
   /vite/3.0.8_less@4.1.3:

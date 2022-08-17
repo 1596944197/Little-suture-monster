@@ -1,5 +1,6 @@
 import React from 'react';
-import pic from '@/static/53.jpg';
+import pic from "@/static/data.jpg";
+
 
 function App() {
   return (

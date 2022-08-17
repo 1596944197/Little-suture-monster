@@ -1,9 +1,9 @@
 import { app, BrowserWindow, ipcMain, net, screen } from 'electron';
 import path from 'path';
-import { writeFileSync } from 'fs';
 import { exec } from 'child_process';
 import server from './httpServer';
 
+process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
 server();
 
@@ -21,27 +21,7 @@ const init = async () => {
 	});
 
 	win.webContents.toggleDevTools();
-	win.loadFile('../index.html');
-
-	(() => {
-		const url = 'http://iwenwiki.com/api/FingerUnion/data.json';
-		const req = net.request(url);
-		req.on('response', response => {
-			const buffer: Buffer[] = [];
-			let size = 0;
-			response.on('data', (buf) => {
-				buffer.push(buf);
-				size += buf.length;
-				console.log('正在传输');
-			});
-			response.on('end', () => {
-				const data = Buffer.concat(buffer, size);
-				writeFileSync(__dirname.replace('dist', `static\\${url.split('/').pop()?.split('?').shift()}`), data);
-				console.log('写入完成');
-			});
-		});
-		req.end();
-	});
+	win.loadURL('http://127.0.0.1:5173/');
 
 	(async () => {
 		// const ses = session.fromPartition('persist:main');
@@ -74,3 +54,26 @@ app.whenReady().then(() => {
 	}, 3000000);
 });
 
+
+function request({ url, method, data }: { url: string, method: string, data: any }) {
+	return new Promise((resolve, reject) => {
+		const req = net.request({ url, method });
+		req.on('response', response => {
+			const buffer: Buffer[] = [];
+			let size = 0;
+			response.on('data', (buf) => {
+				buffer.push(buf);
+				size += buf.length;
+				console.log('正在传输');
+			});
+			response.on('end', () => {
+				const data = Buffer.concat(buffer, size);
+				console.log('写入完成');
+				resolve(data.toString());
+			});
+			response.on('error', reject);
+		});
+		req.write(data);
+		req.end();
+	});
+}

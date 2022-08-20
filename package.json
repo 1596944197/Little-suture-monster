@@ -5,7 +5,8 @@
   "main": "dist/electron/main/main.js",
   "scripts": {
     "dev": "electron ./dist/electron/main.js",
-    "watch": "vite"
+    "watch": "vite",
+    "watch-electron": "tsc -p tsconfig.json -w"
   },
   "author": "",
   "license": "ISC",

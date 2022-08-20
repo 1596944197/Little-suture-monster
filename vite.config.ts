@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Plugin,
   UserConfig,
@@ -11,30 +12,30 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'src')
     },
-    extensions: ['.ts', '.tsx']
+    extensions: ['.ts', '.tsx', '.js']
   },
   plugins: [
-    electron({
-      main: {
-        entry: './src/electron/main.ts',
-        vite: withDebug({
-          build: {
-            outDir: 'dist/electron/main',
-          },
-        }),
-      },
-      preload: {
-        input: {
-          index: './src/electron/preload.tsx'
-        },
-        vite: {
-          build: {
-            sourcemap: 'inline',
-            outDir: 'dist/electron/preload',
-          }
-        },
-      }
-    })
+    // electron({
+    //   main: {
+    //     entry: './src/electron/main.ts',
+    //     vite: withDebug({
+    //       build: {
+    //         outDir: 'dist/electron/main',
+    //       },
+    //     }),
+    //   },
+    //   preload: {
+    //     input: {
+    //       index: './src/electron/preload.tsx'
+    //     },
+    //     vite: {
+    //       build: {
+    //         sourcemap: 'inline',
+    //         outDir: 'dist/electron/preload',
+    //       }
+    //     },
+    //   }
+    // })
   ]
 });
 

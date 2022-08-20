@@ -1,6 +1,7 @@
 interface Window {
   foo: string;
 }
+declare let foo: string;
 
 declare module '*.svg'
 declare module '*.png'

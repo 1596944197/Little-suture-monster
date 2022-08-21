@@ -10,7 +10,8 @@ import electron from 'vite-plugin-electron';
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, 'src'),
+      "/": path.resolve(__dirname, './')
     },
     extensions: ['.ts', '.tsx', '.js']
   },

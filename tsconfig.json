@@ -103,4 +103,7 @@
     },
     "resolveJsonModule": true
   },
+  "exclude": [
+    "vite.config.ts"
+  ]
 }

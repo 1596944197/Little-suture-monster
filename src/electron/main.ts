@@ -5,6 +5,9 @@ import server from './httpServer';
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
+exec('yarn watch');
+exec('yarn watch-electron');
+
 server();
 
 ipcMain.handle('ping', () => ({ a: 1, b: 2, c: 3 }));

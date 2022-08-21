@@ -1,12 +1,11 @@
-import { createServer } from 'http';
+import Koa from 'koa';
 
 export default () => {
-  const server = createServer((req, res) => {
-    res.setHeader('content-type', 'text/html; charset=utf-8');
+  const app = new Koa();
 
-    res.end('<h2>富强民主文明和谐</h2>');
+  app.use(async ctx => {
+    ctx.body = '<h2>hello world</h2>';
   });
 
-  server.listen(3333, () => console.log('is ok'));
+  app.listen(3000, () => console.log('is ok'));
 };
-

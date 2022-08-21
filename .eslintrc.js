@@ -17,6 +17,8 @@ module.exports = {
     ],
     "rules": {
         "semi": 2,
-        '@typescript-eslint/no-var-requires': 0
+        '@typescript-eslint/no-var-requires': 0,
+        '@typescript-eslint/no-explicit-any': 0,
+        '@typescript-eslint/ban-types': 0
     }
-}
+};

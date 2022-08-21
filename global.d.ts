@@ -1,7 +1,9 @@
 interface Window {
   foo: string;
 }
-declare let foo: string;
+declare type AnyObject = {
+  [k: string | number | symbol]: any
+} & {}
 
 declare module '*.svg'
 declare module '*.png'

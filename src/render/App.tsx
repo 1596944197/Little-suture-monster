@@ -4,7 +4,7 @@ import pic from "@/static/53.jpg";
 function App() {
   return (
     <>
-      <h2>一个测试的链接</h2>
+      <h2>一个测试的链接333</h2>
       <img src={pic} alt="" />
     </>
   );

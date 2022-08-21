@@ -1,5 +1,5 @@
 import React from 'react';
-import pic from "/static/53.jpg";
+import pic from "/53.jpg";
 import { Button } from '@arco-design/web-react';
 
 function App() {

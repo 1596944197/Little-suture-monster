@@ -1,50 +1,19 @@
-import Koa from 'koa';
+import exp from 'express';
 import jwt from 'jsonwebtoken';
-import { createReadStream } from 'original-fs';
-
 
 type RequestUrl = '/favicon.ico' | '/' | '/register'
 
-export default () => {
-  const app = new Koa();
-  app.proxy = true;
-
-  let id = 0;
-  app.use(async (ctx, next) => {
-    const { originalUrl, cookies } = ctx;
-
-    switch (originalUrl as RequestUrl) {
-      case '/':
-        ctx.status = 302;
-        ctx.set({
-          location: 'http://127.0.0.1:5173/'
-        });
-        return;
-      case '/favicon.ico':
-        ctx.body = '';
-        return null;
-      case '/register':
-        const token = jwt.sign({ user: id++ }, `${id}`, { expiresIn: 3600 * 1000 });
-        cookies.set('token', token, { expires: new Date(Date.now() + 3600 * 1000) });
-        ctx.body = true;
-        return;
-      default:
-        next();
-    }
+const app = exp();
+let i = 0;
+export default (() => {
+  app.get('/', (req, res) => {
+    res.send('<h2>我操</h2>');
   });
 
-  app.use(async (ctx, next) => {
-    const { originalUrl } = ctx;
-    if (originalUrl.includes('public')) {
-      const arg = /^\/public\/(.*)/g.exec(originalUrl)?.slice(1)[0];
-      if (arg) {
-        const stream = createReadStream(`./static/${arg}`, 'utf-8');
-        ctx.body = stream;
-      }
-      else ctx.status = 400;
-    }
-    await next();
+  app.get('/register', (req, res) => {
+    res.cookie('token', jwt.sign({ user: i }, `${i++}`, { expiresIn: 3600 * 100 }));
+    res.end();
   });
 
   app.listen(3000, () => console.log('is ok'));
-};
+})();

@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/koa": "^2.13.5",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
@@ -23,6 +25,7 @@
     "vite-plugin-electron": "^0.9.0"
   },
   "dependencies": {
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

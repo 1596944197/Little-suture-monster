@@ -5,7 +5,7 @@ type RequestUrl = '/favicon.ico' | '/' | '/register'
 
 const app = exp();
 let i = 0;
-export default (() => {
+export default () => {
   app.get('/', (req, res) => {
     res.send('<h2>我操</h2>');
   });
@@ -16,4 +16,4 @@ export default (() => {
   });
 
   app.listen(3000, () => console.log('is ok'));
-})();
+};

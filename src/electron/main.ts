@@ -5,8 +5,7 @@ import server from './httpServer';
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
-exec('yarn watch');
-exec('yarn watch-electron');
+exec('npm run watch');
 
 server();
 

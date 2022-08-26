@@ -7,7 +7,6 @@ function App() {
     <>
       <Button type="primary">Hello Arco</Button>
       <img src={pic} alt="" />
-      <img src="http://localhost:3000/public/53.jpg" alt="" />
     </>
   );
 }

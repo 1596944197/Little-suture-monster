@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/electron/main/main.js",
   "scripts": {
-    "dev": "electron ./dist/electron/main.js",
+    "dev": "tsc -p tsconfig.json & electron ./dist/electron/main.js",
     "watch": "vite",
     "watch-electron": "tsc -p tsconfig.json -w"
   },
@@ -12,8 +12,6 @@
   "license": "ISC",
   "devDependencies": {
     "@types/jsonwebtoken": "^8.5.8",
-    "@types/koa": "^2.13.5",
-    "@types/koa-static": "^4.0.2",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.32.0",

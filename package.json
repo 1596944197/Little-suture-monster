@@ -4,8 +4,7 @@
   "description": "",
   "main": "dist/electron/main/main.js",
   "scripts": {
-    "dev": "tsc -p tsconfig.json & electron ./dist/electron/main.js",
-    "watch": "vite",
+    "dev": "vite",
     "watch-electron": "tsc -p tsconfig.json -w"
   },
   "author": "",

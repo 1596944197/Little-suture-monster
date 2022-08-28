@@ -16,27 +16,27 @@ export default defineConfig({
     extensions: ['.ts', '.tsx', '.js']
   },
   plugins: [
-    // electron({
-    //   main: {
-    //     entry: './src/electron/main.ts',
-    //     vite: withDebug({
-    //       build: {
-    //         outDir: 'dist/electron/main',
-    //       },
-    //     }),
-    //   },
-    //   preload: {
-    //     input: {
-    //       index: './src/electron/preload.tsx'
-    //     },
-    //     vite: {
-    //       build: {
-    //         sourcemap: 'inline',
-    //         outDir: 'dist/electron/preload',
-    //       }
-    //     },
-    //   }
-    // })
+    electron({
+      main: {
+        entry: './src/electron/main.ts',
+        vite: withDebug({
+          build: {
+            outDir: 'dist/electron/main',
+          },
+        }),
+      },
+      preload: {
+        input: {
+          index: './src/electron/preload.ts'
+        },
+        vite: {
+          build: {
+            sourcemap: 'inline',
+            outDir: 'dist/electron/preload',
+          }
+        },
+      }
+    })
   ]
 });
 

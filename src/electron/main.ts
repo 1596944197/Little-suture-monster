@@ -5,8 +5,6 @@ import server from './httpServer';
 
 process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
-exec('npm run watch');
-
 server();
 
 ipcMain.handle('ping', () => ({ a: 1, b: 2, c: 3 }));

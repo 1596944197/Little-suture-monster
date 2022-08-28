@@ -4,6 +4,8 @@
   "description": "练习项目",
   "main": "dist/electron/main/main.js",
   "scripts": {
+    "preinstall": "node ./pre.js",
+    "preadd": "node ./pre.js",
     "dev": "vite",
     "watch-electron": "tsc -p tsconfig.json -w"
   },

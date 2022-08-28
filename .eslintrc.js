@@ -1,25 +1,31 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
+    env: {
+        browser: true,
+        es2021: true,
+        node: true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"
+    extends: [
+        'plugin:react/recommended',
+        'standard-with-typescript',
+        'prettier'
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": "latest"
+    overrides: [
+    ],
+    parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+            "jsx": true
+        },
+        project: [
+            './tsconfig.json'
+        ]
     },
-    "plugins": [
-        "@typescript-eslint"
+    plugins: [
+        'react',
+        'prettier'
     ],
-    "rules": {
-        "semi": 2,
-        '@typescript-eslint/no-var-requires': 0,
-        '@typescript-eslint/no-explicit-any': 0,
-        '@typescript-eslint/ban-types': 0,
-        'no-case-declarations': 0
-    }
-};
+    rules: {
+    },
+    ignorePatterns: ['.eslintrc.*', 'vite.config.*'],
+}

@@ -1,13 +1,36 @@
-import React from 'react';
-import pic from "/53.jpg";
-import { Button } from '@arco-design/web-react';
+import React from "react";
+import Mine from "./view/Mine/Mine";
+import Home from "./view/Home/Home";
+import { Route, Routes } from "react-router-dom";
+import Login from "./view/Login/Login";
 
-function App() {
+const r: Array<{
+  path: string;
+  Component: () => JSX.Element;
+}> = [
+  {
+    path: "/login",
+    Component: Login,
+  },
+  {
+    path: "/",
+    Component: Home,
+  },
+  {
+    path: "/mine",
+    Component: Mine,
+  },
+];
+
+function App(): JSX.Element {
   return (
-    <>
-      <Button type="primary">Hello Arco</Button>
-      <img src={pic} alt="" />
-    </>
+    <section className="container">
+      <Routes>
+        {r.map(({ path, Component }) => (
+          <Route path={path} key={path} element={<Component />} />
+        ))}
+      </Routes>
+    </section>
   );
 }
 

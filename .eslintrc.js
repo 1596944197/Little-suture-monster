@@ -26,6 +26,7 @@ module.exports = {
         'prettier'
     ],
     rules: {
+        '@typescript-eslint/explicit-function-return-type': 0
     },
     ignorePatterns: ['.eslintrc.*', 'vite.config.*'],
 }

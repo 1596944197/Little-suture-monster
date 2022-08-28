@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   Plugin,
   UserConfig,
@@ -32,7 +31,7 @@ export default defineConfig({
         vite: {
           build: {
             sourcemap: 'inline',
-            outDir: 'dist/electron/preload',
+            outDir: 'dist/electron/main',
           }
         },
       }

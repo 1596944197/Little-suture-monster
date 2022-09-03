@@ -1,6 +1,7 @@
 ## 运行
 
-- pnpm run dev || yarn dev
+- pnpm add || make install
+- pnpm run dev
 
 如果报 electron 未安装的报错 请进入 node_modules 文件夹下的 electron 下执行 pnpm install
 

@@ -9,5 +9,5 @@ const root = createRoot(document.getElementById("container") as HTMLElement);
 root.render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>
+  </BrowserRouter>,
 );

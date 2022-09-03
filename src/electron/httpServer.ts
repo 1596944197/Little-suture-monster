@@ -7,6 +7,7 @@ import express from "express";
 
 const app = express();
 let i = 0;
+// # 原理就是监听某个地址的请求，当用户请求到那个地址的某个文件后，后端就返回该文件
 app.use(
   "/static",
   express.static("public", {
@@ -30,10 +31,7 @@ export default () => {
   });
 
   app.get("/register", (req, res) => {
-    res.cookie(
-      "token",
-      jwt.sign({ user: i }, `${i++}`, { expiresIn: 3600 * 1000 }),
-    );
+    res.cookie("token", jwt.sign({ user: i }, `${i++}`, { expiresIn: 3600 * 1000 }));
     res.end();
   });
 };

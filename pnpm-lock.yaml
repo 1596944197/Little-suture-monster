@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@arco-design/web-react': ^2.39.1
+  '@tanstack/react-query': ^4.2.3
   '@types/express': ^4.17.13
   '@types/jsonwebtoken': ^8.5.8
   '@types/react': ^18.0.17
@@ -31,6 +32,7 @@ specifiers:
 
 dependencies:
   '@arco-design/web-react': 2.39.1_zxljzmqdrxwnuenbkrz77w74uy
+  '@tanstack/react-query': 4.2.3_biqbaboplfbrettd7655fr4n2y
   '@types/express': 4.17.13
   express: 4.18.1
   jsonwebtoken: 8.5.1
@@ -196,6 +198,29 @@ packages:
       defer-to-connect: 1.1.3
     dev: true
 
+  /@tanstack/query-core/4.2.3:
+    resolution: {integrity: sha512-zdt5lYWs1dZaA3IxJbCgtAfHZJScRZONpiLL7YkeOkrme5MfjQqTpjq7LYbzpyuwPOh2Jx68le0PLl57JFv5hQ==}
+    dev: false
+
+  /@tanstack/react-query/4.2.3_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-JLaMOxoJTkiAu7QpevRCt2uI/0vd3E8K/rSlCuRgWlcW5DeJDFpDS5kfzmLO5MOcD97fgsJRrDbxDORxR1FdJA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.2.3
+      '@types/use-sync-external-store': 0.0.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      use-sync-external-store: 1.2.0_react@18.2.0
+    dev: false
+
   /@types/body-parser/1.19.2:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
@@ -303,6 +328,10 @@ packages:
     dependencies:
       '@types/mime': 3.0.1
       '@types/node': 16.11.48
+    dev: false
+
+  /@types/use-sync-external-store/0.0.3:
+    resolution: {integrity: sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==}
     dev: false
 
   /@types/yauzl/2.10.0:
@@ -3238,6 +3267,14 @@ packages:
       detect-node-es: 1.1.0
       react: 18.2.0
       tslib: 2.4.0
+    dev: false
+
+  /use-sync-external-store/1.2.0_react@18.2.0:
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /utils-merge/1.0.1:

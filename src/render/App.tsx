@@ -1,7 +1,7 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
 import Mine from "./view/Mine/Mine";
 import Home from "./view/Home/Home";
-import { Route, Routes } from "react-router-dom";
 import Login from "./view/Login/Login";
 
 const r: Array<{
@@ -9,12 +9,12 @@ const r: Array<{
   Component: () => JSX.Element;
 }> = [
   {
-    path: "/login",
-    Component: Login,
+    path: "/home",
+    Component: Home,
   },
   {
     path: "/",
-    Component: Home,
+    Component: Login,
   },
   {
     path: "/mine",

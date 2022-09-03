@@ -29,7 +29,8 @@ module.exports = {
         '@typescript-eslint/explicit-function-return-type': 0,
         '@typescript-eslint/no-unused-expressions': 0,
         '@typescript-eslint/no-floating-promises': 0,
-        'import/no-absolute-path': 0
+        'import/no-absolute-path': 0,
+        '@typescript-eslint/return-await': 0
     },
     ignorePatterns: ['.eslintrc.*', 'vite.config.*'],
 }

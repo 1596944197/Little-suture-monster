@@ -1,3 +1,5 @@
+const baseUrl = "http://127.0.0.1:3000";
+
 export const sendRequest = async ({
   url,
   method = "GET",
@@ -6,12 +8,32 @@ export const sendRequest = async ({
 }: {
   url: string;
   method?: "GET" | "POST" | "PUT" | "DELETE";
-  headers?: Headers;
+  headers?: HeadersInit;
   data?: any;
 }) => {
-  return fetch(url, {
-    method,
-    headers,
-    body: typeof data === "string" ? data : JSON.stringify(data),
-  }).then(async (res) => res?.json?.());
+  if (method !== "GET") {
+    const body = new FormData();
+    for (const key in data) body.append(key, data[key]);
+    return fetch(`${baseUrl}${url}`, {
+      method,
+      headers,
+      body,
+    }).then(async (res) => res.json());
+  } else {
+    return fetch(`${baseUrl}${url}${renderParams(data)}`, {
+      method,
+      headers,
+    }).then(async (res) => res.json());
+  }
 };
+
+function renderParams(params: {}) {
+  let result = "?";
+  if (params instanceof Object) {
+    Object.entries(params).forEach(([key, value], i) => {
+      if (i) result += `&${key}=${value}`;
+      else result += `${key}=${value}`;
+    });
+  }
+  return result === "?" ? "" : result;
+}

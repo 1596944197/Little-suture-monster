@@ -1,54 +1,100 @@
+import { login, login, register } from "@/render/api/account/account";
 import { Form, Input, Button } from "@arco-design/web-react";
 import React, { useState } from "react";
 const FormItem = Form.Item;
 
 const App = () => {
+  const [form] = Form.useForm();
   const [loginState, setLoginState] = useState(false);
   const [registerState, setRegisterState] = useState(false);
+  const [password, setPassword] = useState("");
+  const [account, setAccount] = useState("");
+
+  const onRegisterClick = async () => {
+    try {
+      await form.validate();
+      setRegisterState(true);
+      await register({ account, password });
+      setRegisterState(false);
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+
+  const onLoginClick = async () => {
+    try {
+      await form.validate();
+      setLoginState(true);
+      login({ account, password });
+      setLoginState(false);
+    } catch (error) {
+      console.warn(error);
+    }
+  };
 
   const generateItems = () => {
     interface ItemType {
       label?: string;
+      field?: string;
       required?: boolean;
+      rules?: AnyArray;
       childrenComponent: () => JSX.Element;
     }
     const itemList: ItemType[] = [
       {
         label: "账号",
+        field: "account",
         required: true,
-        childrenComponent: () => <Input placeholder="请输入账号" />,
+        rules: [{ required: true }],
+        childrenComponent: () => <Input onChange={setAccount} placeholder="请输入账号" />,
       },
       {
         label: "密码",
         required: true,
-        childrenComponent: () => <Input.Password placeholder="请输入密码" />,
+        field: "password",
+        rules: [
+          {
+            validator(value, cb: (str?: any) => void) {
+              if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,16}$/.test(value)) {
+                return cb("密码需包含字母和数字");
+              }
+              return cb();
+            },
+            required: true,
+          },
+        ],
+        childrenComponent: () => (
+          <Input.Password onChange={setPassword} placeholder="请输入密码" />
+        ),
       },
       {
         childrenComponent: () => (
           <>
             <Button
               loading={loginState}
-              onClick={() => setLoginState(true)}
+              onClick={onLoginClick}
               type="primary"
-              style={{ marginRight: 40 }}
+              style={{ marginRight: 40, marginTop: 20 }}
             >
               登录
             </Button>
-            <Button
-              loading={registerState}
-              onClick={() => setRegisterState(true)}
-              status="success"
-            >
+            <Button loading={registerState} onClick={onRegisterClick} status="success">
               注册
             </Button>
           </>
         ),
       },
     ];
-    return itemList.map(({ label, required, childrenComponent }, index) => {
+    return itemList.map(({ label, required, childrenComponent, rules, field }, index) => {
       if (index !== 2) {
         return (
-          <FormItem key={index} label={label} required={required}>
+          <FormItem
+            key={index}
+            label={label}
+            required={required}
+            rules={rules}
+            field={field}
+          >
             {childrenComponent()}
           </FormItem>
         );
@@ -71,6 +117,7 @@ const App = () => {
       }}
     >
       <Form
+        form={form}
         style={{
           width: 550,
         }}

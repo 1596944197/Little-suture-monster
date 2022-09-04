@@ -30,7 +30,12 @@ module.exports = {
         '@typescript-eslint/no-unused-expressions': 0,
         '@typescript-eslint/no-floating-promises': 0,
         'import/no-absolute-path': 0,
-        '@typescript-eslint/return-await': 0
+        '@typescript-eslint/return-await': 0,
+        'n/no-callback-literal': 0,
+        '@typescript-eslint/no-non-null-assertion': 0,
+        '@typescript-eslint/no-misused-promises': 0,
+        '@typescript-eslint/restrict-template-expressions': 0,
+        '@typescript-eslint/strict-boolean-expressions': 0
     },
     ignorePatterns: ['.eslintrc.*', 'vite.config.*'],
 }

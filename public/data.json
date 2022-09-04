@@ -2,7 +2,8 @@
   "user": [
     {
       "id": 0,
-      "name": "测试",
+      "account": "测试",
+      "password": "abc123",
       "token": ""
     }
   ]

@@ -1,42 +1,38 @@
-import {
-  Plugin,
-  UserConfig,
-  defineConfig,
-} from 'vite';
-import path from 'path';
-import electron from 'vite-plugin-electron';
+import { Plugin, UserConfig, defineConfig } from "vite";
+import path from "path";
+import electron from "vite-plugin-electron";
 
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      "/": path.resolve(__dirname, 'public')
+      "@": path.resolve(__dirname, "src"),
+      "/": path.resolve(__dirname, "public"),
     },
-    extensions: ['.ts', '.tsx', '.js']
+    extensions: [".ts", ".tsx", ".js"],
   },
   plugins: [
     electron({
       main: {
-        entry: './src/electron/main.ts',
+        entry: "./src/electron/main.ts",
         vite: withDebug({
           build: {
-            outDir: 'dist/electron/main',
+            outDir: "dist/electron/main",
           },
         }),
       },
       preload: {
         input: {
-          index: './src/electron/preload.ts'
+          index: "./src/electron/preload.ts",
         },
         vite: {
           build: {
-            sourcemap: 'inline',
-            outDir: 'dist/electron/main',
-          }
+            sourcemap: "inline",
+            outDir: "dist/electron/main",
+          },
         },
-      }
-    })
-  ]
+      },
+    }),
+  ],
 });
 
 function withDebug(config: UserConfig): UserConfig {
@@ -44,9 +40,9 @@ function withDebug(config: UserConfig): UserConfig {
     if (!config.build) return {};
     config.build.sourcemap = true;
     config.plugins = (config.plugins || []).concat({
-      name: 'electron-vite-debug',
+      name: "electron-vite-debug",
       configResolved(config) {
-        const index = config.plugins.findIndex(p => p.name === 'electron-main-watcher');
+        const index = config.plugins.findIndex((p) => p.name === "electron-main-watcher");
         // At present, Vite can only modify plugins in configResolved hook.
         (config.plugins as Plugin[]).splice(index, 1);
       },

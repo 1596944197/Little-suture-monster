@@ -21,7 +21,10 @@ specifiers:
   eslint-plugin-promise: ^6.0.0
   eslint-plugin-react: ^7.31.1
   express: ^4.18.1
+<<<<<<< HEAD
   formidable: v3
+=======
+>>>>>>> a8493e2e6b044b43245f193cf8d7efe5c124a54d
   git-cz: ^4.9.0
   jsonwebtoken: ^8.5.1
   less: ^4.1.3

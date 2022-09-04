@@ -1,5 +1,5 @@
-import { login, login, register } from "@/render/api/account/account";
-import { Form, Input, Button } from "@arco-design/web-react";
+import { login, register } from "@/render/api/account/account";
+import { Form, Input, Button, Message } from "@arco-design/web-react";
 import React, { useState } from "react";
 const FormItem = Form.Item;
 
@@ -14,8 +14,9 @@ const App = () => {
     try {
       await form.validate();
       setRegisterState(true);
-      await register({ account, password });
+      const { success, msg } = await register({ account, password });
       setRegisterState(false);
+      success ? Message.success(msg) : Message.error(msg);
     } catch (error) {
       console.warn(error);
     }
@@ -46,7 +47,9 @@ const App = () => {
         field: "account",
         required: true,
         rules: [{ required: true }],
-        childrenComponent: () => <Input onChange={setAccount} placeholder="请输入账号" />,
+        childrenComponent: () => (
+          <Input defaultValue="ces" onChange={setAccount} placeholder="请输入账号" />
+        ),
       },
       {
         label: "密码",
@@ -64,7 +67,11 @@ const App = () => {
           },
         ],
         childrenComponent: () => (
-          <Input.Password onChange={setPassword} placeholder="请输入密码" />
+          <Input.Password
+            defaultValue="abc123"
+            onChange={setPassword}
+            placeholder="请输入密码"
+          />
         ),
       },
       {

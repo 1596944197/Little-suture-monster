@@ -1,6 +1,6 @@
 const baseUrl = "http://127.0.0.1:3000";
 
-export const sendRequest = async ({
+export const sendRequest = async <Res extends {}>({
   url,
   method = "GET",
   headers,
@@ -10,7 +10,7 @@ export const sendRequest = async ({
   method?: "GET" | "POST" | "PUT" | "DELETE";
   headers?: HeadersInit;
   data?: any;
-}) => {
+}): Promise<Res> => {
   if (method !== "GET") {
     const body = new FormData();
     for (const key in data) body.append(key, data[key]);
@@ -18,11 +18,13 @@ export const sendRequest = async ({
       method,
       headers,
       body,
+      credentials: "include",
     }).then(async (res) => res.json());
   } else {
     return fetch(`${baseUrl}${url}${renderParams(data)}`, {
       method,
       headers,
+      credentials: "include",
     }).then(async (res) => res.json());
   }
 };

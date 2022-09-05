@@ -1,7 +1,7 @@
-import { readFileSync, writeFileSync } from "fs";
-import jwt from "jsonwebtoken";
 import type { Express } from "express";
 import formidable from "formidable";
+import { readFileSync, writeFileSync } from "fs";
+import jwt from "jsonwebtoken";
 
 const i = 0;
 const expiredTime = 3600 * 1000;
@@ -18,13 +18,12 @@ const userInfo: {
 
 export default (app: Express) => {
   app.all("/*", (req, res, next) => {
-    res.setHeader("Access-Control-Allow-Credentials", "true");
+    // res.setHeader("Access-Control-Allow-Credentials", "true");
     next();
   });
 
   app.post("/register", async (req, res, next) => {
     const users = userInfo.users;
-    res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
     const {
       data: { account, password },
     } = await parseFormData<{ account: string; password: string }>(req);
@@ -49,14 +48,13 @@ export default (app: Express) => {
 
   app.post("/login", async (req, res, next) => {
     const token = getToken(req.headers.cookie);
-    res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
     jwt.verify(token, key, (err) => {
       if (err) {
         res.send({ success: false, msg: "令牌过期" });
       } else {
         res.statusCode = 302;
-        res.setHeader("location", `${req.headers.origin}/home`);
-        res.send({ success: true, msg: "登录成功" });
+        res.setHeader("location", "/home");
+        res.send({ success: true, msg: "登陆成功" });
       }
     });
     next();

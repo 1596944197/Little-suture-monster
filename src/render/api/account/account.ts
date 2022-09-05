@@ -11,7 +11,7 @@ interface ReturnType {
 }
 
 export async function login(data: { account: string; password: string }) {
-  return sendRequest({ url: AccountAPI.login, method: "POST", data });
+  return sendRequest<ReturnType>({ url: AccountAPI.login, method: "POST", data });
 }
 
 export async function register(data: { account: string; password: string }) {

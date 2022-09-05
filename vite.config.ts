@@ -1,5 +1,5 @@
-import { Plugin, UserConfig, defineConfig } from "vite";
 import path from "path";
+import { defineConfig, Plugin, UserConfig } from "vite";
 import electron from "vite-plugin-electron";
 
 export default defineConfig({
@@ -9,6 +9,15 @@ export default defineConfig({
       "/": path.resolve(__dirname, "public"),
     },
     extensions: [".ts", ".tsx", ".js"],
+  },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:3000",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
   },
   plugins: [
     electron({

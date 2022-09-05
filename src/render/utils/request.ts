@@ -1,4 +1,4 @@
-const baseUrl = "http://127.0.0.1:3000";
+const baseUrl = "/api";
 
 export const sendRequest = async <Res extends {}>({
   url,
@@ -18,13 +18,13 @@ export const sendRequest = async <Res extends {}>({
       method,
       headers,
       body,
-      credentials: "include",
+      redirect: "manual",
     }).then(async (res) => res.json());
   } else {
     return fetch(`${baseUrl}${url}${renderParams(data)}`, {
       method,
       headers,
-      credentials: "include",
+      redirect: "manual",
     }).then(async (res) => res.json());
   }
 };

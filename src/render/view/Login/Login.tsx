@@ -1,5 +1,5 @@
 import { login, register } from "@/render/api/account/account";
-import { Form, Input, Button, Message } from "@arco-design/web-react";
+import { Button, Form, Input, Message } from "@arco-design/web-react";
 import React, { useState } from "react";
 const FormItem = Form.Item;
 
@@ -26,8 +26,9 @@ const App = () => {
     try {
       await form.validate();
       setLoginState(true);
-      login({ account, password });
+      const { success, msg } = await login({ account, password });
       setLoginState(false);
+      success ? Message.success(msg) : Message.error(msg);
     } catch (error) {
       console.warn(error);
     }

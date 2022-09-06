@@ -1,13 +1,8 @@
-import Head from "next/head";
 import Link from "next/link";
-import React from "react";
 
 function Home() {
   return (
-    <React.Fragment>
-      <Head>
-        <title>Home - Nextron (with-typescript)</title>
-      </Head>
+    <>
       <div>
         <p>
           ⚡ Electron + Next.js ⚡ -
@@ -15,9 +10,9 @@ function Home() {
             <a>Go to next page</a>
           </Link>
         </p>
-        <img src="/images/logo.png" />
+        <img src="/images/422242.jpg" />
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

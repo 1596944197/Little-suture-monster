@@ -1,25 +1,28 @@
-import {
-  BrowserWindow,
-  BrowserWindowConstructorOptions,
-  screen,
-} from "electron";
+import { BrowserWindow, screen } from "electron";
 import Store from "electron-store";
 
-export default (
-  windowName: string,
-  options: BrowserWindowConstructorOptions
-): BrowserWindow => {
+export default (windowName: string): BrowserWindow => {
   const key = "window-state";
   const name = `window-state-${windowName}`;
   const store = new Store({ name });
+  const { width, height } = screen.getPrimaryDisplay().workArea;
   const defaultSize = {
-    width: options.width,
-    height: options.height,
+    width,
+    height,
   };
   let state = {};
-  let win;
 
   const restore = () => store.get(key, defaultSize);
+
+  const win = new BrowserWindow({
+    ...state,
+    width,
+    height,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
 
   const getCurrentPosition = () => {
     const position = win.getPosition();
@@ -54,8 +57,6 @@ export default (
       return windowWithinBounds(windowState, display.bounds);
     });
     if (!visible) {
-      // Window is partially or fully not visible now.
-      // Reset it to safe defaults.
       return resetToDefaults();
     }
     return windowState;
@@ -69,17 +70,6 @@ export default (
   };
 
   state = ensureVisibleOnSomeDisplay(restore());
-
-  const browserOptions: BrowserWindowConstructorOptions = {
-    ...options,
-    ...state,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-      ...options.webPreferences,
-    },
-  };
-  win = new BrowserWindow(browserOptions);
 
   win.on("close", saveState);
 

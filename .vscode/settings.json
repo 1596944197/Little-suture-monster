@@ -13,5 +13,8 @@
   },
   "path-intellisense.mappings": {
     "@":"${workspaceRoot}/renderer"
+  },
+  "cssModules.pathAlias": {
+    "@": "${workspaceFolder}/renderer",
   }
 }

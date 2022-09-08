@@ -3,7 +3,7 @@ interface Window {
 }
 declare type AnyObject = {
   [k: string | number | symbol]: any;
-} & {};
+} & Object;
 
 declare type AnyArray = any[];
 
@@ -14,3 +14,4 @@ declare module "*.jpeg";
 declare module "*.gif";
 declare module "*.bmp";
 declare module "*.tiff";
+declare module "*.module.scss";

@@ -10,6 +10,7 @@ function Next() {
             <a>Go to home page</a>
           </Link>
         </p>
+        <img src="/images/422242.jpg" />
       </div>
     </>
   );

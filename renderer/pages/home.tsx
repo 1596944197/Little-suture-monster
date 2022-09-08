@@ -1,17 +1,10 @@
-import Link from "next/link";
-
+import styles from "@/public/style/home.module.scss";
 function Home() {
   return (
     <>
-      <div>
-        <p>
-          ⚡ Electron + Next.js ⚡ -
-          <Link href="/next">
-            <a>Go to next page</a>
-          </Link>
-        </p>
-        <img src="/images/422242.jpg" />
-      </div>
+      <aside className={styles.container}>
+        <h2>测试</h2>
+      </aside>
     </>
   );
 }

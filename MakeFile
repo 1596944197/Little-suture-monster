@@ -1,2 +1,5 @@
 install: 
 	pnpm add
+
+run:
+  pnpm run dev

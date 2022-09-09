@@ -16,5 +16,7 @@
   },
   "cssModules.pathAlias": {
     "@": "${workspaceFolder}/renderer",
-  }
+  },
+  "commentTranslate.source": "Bing",
+  "commentTranslate.targetLanguage": "zh-CN"
 }

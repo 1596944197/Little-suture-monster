@@ -4,6 +4,7 @@ specifiers:
   '@babel/core': ^7.18.13
   '@babel/plugin-transform-runtime': ^7.18.10
   '@babel/runtime-corejs3': ^7.18.9
+  '@types/lodash-es': ^4.17.6
   '@types/node': ^16.11.7
   '@types/react': ^18.0.8
   '@typescript-eslint/eslint-plugin': ^5.0.0
@@ -21,6 +22,7 @@ specifiers:
   eslint-plugin-promise: ^6.0.0
   eslint-plugin-react: ^7.31.1
   git-cz: ^4.9.0
+  lodash-es: ^4.17.21
   next: ^12.2.5
   nextron: ^8.2.0
   prettier: ^2.7.1
@@ -32,11 +34,13 @@ specifiers:
 dependencies:
   electron-serve: 1.1.0
   electron-store: 8.1.0
+  lodash-es: 4.17.21
 
 devDependencies:
   '@babel/core': 7.18.13
   '@babel/plugin-transform-runtime': 7.18.10_@babel+core@7.18.13
   '@babel/runtime-corejs3': 7.18.9
+  '@types/lodash-es': 4.17.6
   '@types/node': 16.11.57
   '@types/react': 18.0.18
   '@typescript-eslint/eslint-plugin': 5.36.1_lbwfnm54o3pmr3ypeqp3btnera
@@ -1638,6 +1642,16 @@ packages:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
       '@types/node': 16.11.57
+    dev: true
+
+  /@types/lodash-es/4.17.6:
+    resolution: {integrity: sha512-R+zTeVUKDdfoRxpAryaQNRKk3105Rrgx2CFRClIgRGaqDTdjsm8h6IYA8ir584W3ePzkZfst5xIgDwYrlh9HLg==}
+    dependencies:
+      '@types/lodash': 4.14.184
+    dev: true
+
+  /@types/lodash/4.14.184:
+    resolution: {integrity: sha512-RoZphVtHbxPZizt4IcILciSWiC6dcn+eZ8oX9IWEYfDMcocdd42f7NPI6fQj+6zI8y4E0L7gu2pcZKLGTRaV9Q==}
     dev: true
 
   /@types/minimatch/5.1.2:
@@ -4273,6 +4287,10 @@ packages:
     dependencies:
       p-locate: 5.0.0
     dev: true
+
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
 
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}

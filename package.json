@@ -14,12 +14,14 @@
   },
   "dependencies": {
     "electron-serve": "^1.1.0",
-    "electron-store": "^8.1.0"
+    "electron-store": "^8.1.0",
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
     "@babel/plugin-transform-runtime": "^7.18.10",
     "@babel/runtime-corejs3": "^7.18.9",
+    "@types/lodash-es": "^4.17.6",
     "@types/node": "^16.11.7",
     "@types/react": "^18.0.8",
     "@typescript-eslint/eslint-plugin": "^5.0.0",

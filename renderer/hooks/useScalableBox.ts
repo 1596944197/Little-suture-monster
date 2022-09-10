@@ -2,7 +2,10 @@ import { MutableRefObject, useEffect, useState } from "react";
 
 let _isDraping = false;
 let direction: "right" | "left" | "top" | "bottom" = "right";
-const f = 50;
+const f = 70;
+let targetWidth: number = null;
+let targetHeight: number = null;
+
 export function useScalableBox(
   ref: MutableRefObject<HTMLElement>,
   options = {
@@ -14,65 +17,95 @@ export function useScalableBox(
 
   function initMouseEvent() {
     if (ref?.current) {
+      const c = ref.current;
+      c.style.transition = "all 0.15s";
+      c.style.position = "relative";
+      targetWidth = c.clientWidth;
+      targetHeight = c.clientHeight;
+
       document.documentElement.onmousedown = ({ target, offsetX, offsetY }) => {
-        if (target === ref.current) {
-          const that = ref.current;
-          if (that.clientWidth - offsetX <= f) {
+        const ele = ref.current;
+        if (ele === target) {
+          if (ele.clientWidth - offsetX <= f) {
             _isDraping = true;
-            setIsDraping(true);
-          } else if (that.clientHeight - offsetY <= f) {
+            direction = "right";
+          } else if (ele.clientHeight - offsetY <= f) {
             _isDraping = true;
-            setIsDraping(true);
-          } else if (that.clientHeight - offsetY >= that.clientHeight - f) {
+            direction = "bottom";
+          } else if (ele.clientHeight - offsetY >= ele.clientHeight - f) {
             _isDraping = true;
-            setIsDraping(true);
-          } else if (that.clientWidth - offsetX >= that.clientWidth - f) {
+            direction = "top";
+          } else if (ele.clientWidth - offsetX >= ele.clientWidth - f) {
             _isDraping = true;
-            setIsDraping(true);
+            direction = "left";
           }
+          setIsDraping(true);
         }
       };
-      document.documentElement.onmousemove = ({
-        offsetX,
-        offsetY,
-        target,
-        clientX,
-        clientY,
-      }: MouseEvent) => {
-        const that: HTMLDivElement = ref.current as any;
+      document.documentElement.onmousemove = (ev: MouseEvent) => {
+        const { offsetX, offsetY, target, clientX, clientY } = ev;
+        const ele: HTMLDivElement = ref.current as any;
 
-        if (target === that) {
-          if (that.clientWidth - offsetX <= f) {
-            that.style.cursor = "e-resize";
-            direction = "right";
-          } else if (that.clientHeight - offsetY <= f) {
-            that.style.cursor = "n-resize";
-            direction = "bottom";
-          } else if (that.clientHeight - offsetY >= that.clientHeight - f) {
-            that.style.cursor = "n-resize";
-            direction = "top";
-          } else if (that.clientWidth - offsetX >= that.clientWidth - f) {
-            that.style.cursor = "e-resize";
-            direction = "left";
-          } else {
-            that.style.cursor = "";
+        const style = ele?.style;
+
+        requestAnimationFrame(() => {
+          if (ele === target) {
+            if (ele.clientWidth - offsetX <= f) {
+              style.cursor = "e-resize";
+            } else if (ele.clientHeight - offsetY <= f) {
+              style.cursor = "n-resize";
+            } else if (ele.clientHeight - offsetY >= ele.clientHeight - f) {
+              style.cursor = "n-resize";
+            } else if (ele.clientWidth - offsetX >= ele.clientWidth - f) {
+              style.cursor = "e-resize";
+            } else {
+              style.cursor = "";
+            }
           }
-        }
+        });
 
         requestAnimationFrame(() => {
           if (!_isDraping) return;
+
+          const offsetLeft = clientX - ele.offsetLeft;
+          const offsetTop = clientY - ele.offsetTop;
+
           switch (direction) {
             case "right":
-              that.style.width = Math.max(options.minWidth, clientX) + "px";
+              const width = Math.max(
+                options.minWidth,
+                clientX - ele.offsetLeft
+              );
+              targetWidth = width;
+              style.width = width + "px";
               break;
             case "top":
-              that.style.height = Math.max(options.minHeight, clientY) + "px";
+              style.top = offsetTop >= 0 ? "0" : offsetTop + "px";
+              style.height =
+                Math.max(
+                  targetHeight,
+                  offsetTop >= 0
+                    ? targetHeight - offsetTop
+                    : targetHeight + Math.abs(offsetTop)
+                ) + "px";
               break;
             case "bottom":
-              that.style.height = Math.max(options.minHeight, clientY) + "px";
+              const height = Math.max(
+                options.minHeight,
+                clientY - ele.offsetTop
+              );
+              targetHeight = height;
+              style.height = height + "px";
               break;
             case "left":
-              that.style.width = Math.max(options.minWidth, clientX) + "px";
+              style.left = offsetLeft >= 0 ? "0" : offsetLeft + "px";
+              style.width =
+                Math.max(
+                  targetWidth,
+                  offsetLeft >= 0
+                    ? targetWidth - offsetLeft
+                    : targetWidth + Math.abs(offsetLeft)
+                ) + "px";
               break;
             default:
               break;

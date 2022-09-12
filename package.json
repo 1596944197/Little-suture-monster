@@ -15,7 +15,8 @@
   "dependencies": {
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "puppeteer": "^17.1.3"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",

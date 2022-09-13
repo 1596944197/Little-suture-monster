@@ -1,10 +1,13 @@
 import { app } from "electron";
 import serve from "electron-serve";
 import { createWindow } from "./helpers";
+import { WorkerAsync } from "./workServer/worker";
 
 const isProd: boolean = process.env.NODE_ENV === "production";
 
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
+
+WorkerAsync();
 
 if (isProd) {
   serve({ directory: "app" });

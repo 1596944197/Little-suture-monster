@@ -11,4 +11,13 @@ module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, '/renderer/public')],
   },
+  async redirects() {
+    return [
+      {
+        source: '/home',
+        destination: '/next',
+        permanent: true,
+      },
+    ]
+  },
 };

@@ -13,6 +13,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
+    "@arco-design/web-react": "^2.40.1",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",
     "lodash-es": "^4.17.21",

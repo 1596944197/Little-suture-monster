@@ -1,12 +1,9 @@
 .tree-content {
-  position: relative;
-  .tree-node {
-    position: relative;
-    left: 20px;
-    top: 20px;
-    .title {
-      font-size: 20px;
-      color: rgb(81, 81, 81);
-    }
+  .tree-node > .tree-node {
+    margin: 5px 0 5px 30px;
+  }
+  .title {
+    font-size: 20px;
+    color: rgb(81, 81, 81);
   }
 }

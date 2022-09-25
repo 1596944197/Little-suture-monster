@@ -1,5 +1,4 @@
 import styles from "@/public/style/tree.module.scss";
-import { useEffect, useRef } from "react";
 
 type TreeData = Array<{
   title: string;
@@ -8,21 +7,12 @@ type TreeData = Array<{
 }>;
 
 function Tree({ list, ...props }: { list: TreeData }) {
-  const ref = useRef<HTMLDivElement>();
-  useEffect(() => {
-    const container = ref.current;
-    container.childNodes.forEach((item: HTMLDivElement) => {
-      item.style.marginBottom =
-        (item.nextElementSibling as HTMLDivElement)?.clientHeight + "px";
-    });
-  }, []);
-
   const renderElementByTreeData = (list: TreeData = []) => {
     return (
       <>
         {list.map((item) => (
           <div className={styles["tree-node"]} key={item.id}>
-            <span className={styles.title}>{item.title}</span>
+            <div className={styles.title}>{item.title}</div>
             {item.children ? renderElementByTreeData(item.children) : null}
           </div>
         ))}
@@ -30,7 +20,7 @@ function Tree({ list, ...props }: { list: TreeData }) {
     );
   };
   return (
-    <div className={styles["tree-content"]} ref={ref}>
+    <div className={styles["tree-content"]}>
       {renderElementByTreeData(list)}
     </div>
   );

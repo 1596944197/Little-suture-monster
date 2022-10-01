@@ -1,6 +1,7 @@
 import "@/public/style/init.scss";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import "@arco-design/web-react/dist/css/arco.css";
 
 export default function MyApp({ Component, pageProps, ...args }: AppProps) {
   return (

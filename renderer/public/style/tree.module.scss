@@ -1,9 +1,40 @@
 .tree-content {
-  .tree-node > .tree-node {
-    margin: 5px 0 5px 30px;
+  transition: all 0.2s;
+  .tree-node {
+    display: flex;
+    cursor: pointer;
+    position: relative;
+    .tree-node {
+      margin: 5px 0 5px 15px;
+    }
   }
   .title {
     font-size: 20px;
     color: rgb(81, 81, 81);
+  }
+  .checkBox {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--color-fill-3);
+    border-radius: 2px;
+    user-select: none;
+    margin-right: 6px;
+  }
+  svg {
+    width: 12px;
+    height: 12px;
+    padding-top: 8px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  .hidden {
+    align-items: center;
+    display: flex;
+    > * {
+      display: none;
+    }
+  }
+  .no-child {
+    opacity: 0;
   }
 }

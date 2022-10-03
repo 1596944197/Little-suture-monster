@@ -21,13 +21,13 @@ const customData = [
         title: "第二级222",
         id: renderId(),
         children: [
-          { title: "操", id: renderId() },
+          { title: "dfdf", id: renderId() },
           {
             title: "大学生",
             id: renderId(),
             children: [
               {
-                title: "大妹子",
+                title: "大子",
                 id: renderId(),
               },
             ],
@@ -80,9 +80,20 @@ function App() {
   const [treeData] = useState(TreeData);
   return (
     <div className="tree">
-      <Tree list={customData} />
+      <Tree
+        list={customData}
+        checkable
+        onClick={(ev) => console.log(ev)}
+        onChange={(ev) => console.log(ev)}
+      />
       <hr />
-      <ATree defaultSelectedKeys={["0-0-1"]} treeData={treeData} />
+      <ATree
+        checkable
+        defaultSelectedKeys={["0-0-1"]}
+        treeData={treeData}
+        onSelect={(ev) => console.log(ev)}
+        onCheck={(ev) => console.log(ev)}
+      />
     </div>
   );
 }

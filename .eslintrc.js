@@ -39,7 +39,8 @@ module.exports = {
         '@typescript-eslint/restrict-plus-operands': 0,
         'react/react-in-jsx-scope': 0,
         '@typescript-eslint/no-this-alias': 0,
-        'no-case-declarations': 0
+        'no-case-declarations': 0,
+        '@typescript-eslint/prefer-optional-chain': 0
     },
     ignorePatterns: ['.eslintrc.*', 'vite.config.*'],
 }

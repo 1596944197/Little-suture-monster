@@ -1,4 +1,4 @@
-import Tree from "@/components/Tree";
+import Tree from "@/components/Tree/Tree";
 
 import { useState } from "react";
 import { Tree as ATree } from "@arco-design/web-react";

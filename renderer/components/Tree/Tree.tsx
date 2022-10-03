@@ -1,5 +1,5 @@
 import styles from "@/public/style/tree.module.scss";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 type TreeData = Array<{
   title: string;

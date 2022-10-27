@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "ts-node serve.ts"
+    "dev": "ts-node -P tsconfig.json serve.ts"
   },
   "keywords": [],
   "author": "",

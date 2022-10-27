@@ -21,6 +21,17 @@ let i = 0
 
 const clearTemp = () => writeFileSync(cacheTempPath, '')
 
+const matchMimeType = (filename: string) => {
+  const index = filename.match(/\./)?.index
+
+  const MIME: AnyObject = {
+    js: 'application/javascript',
+    json: 'application/json'
+  }
+
+  return typeof index === 'number' ? MIME[filename.slice(index + 1)] : 'application/*'
+}
+
 // * 将main.js文件内容提取出来,如果需要，可以拷贝内容到根目录的main.js
 const main = `
     const clientWS = new WebSocket('ws://localhost:8000')
@@ -49,6 +60,7 @@ const main = `
 const wss = new WebSocketServer({ port: 8000 });
 wss.on('connection', assignment);
 wss.on('listening', () => console.log('websocket正在监听'))
+wss.on('error', console.warn)
 
 function assignment(ws: WebSocket & { id: number }) {
   console.log('用户连接')
@@ -73,6 +85,8 @@ enum UrlList {
 
 const htpServer = express()
 
+htpServer.use(express.static('./src'))
+
 htpServer.get(UrlList.HOME, (req, res) => {
   const temp = readFileSync(template, 'utf-8')
   appendFileSync(cacheTempPath, `
@@ -82,15 +96,18 @@ htpServer.get(UrlList.HOME, (req, res) => {
   </script>`)
   return res.end(readFileSync(cacheTempPath))
 })
+
 htpServer.get(UrlList.ICON, (req, res) => {
   // # 懒得放图标，拿别人网站的吧
   res.statusCode = 302
   res.setHeader('Location', 'https://developer.mozilla.org/favicon-192x192.png')
   return res.end()
 })
+
 htpServer.get('*', (req, res, next) => {
-  const url = req.url
+  const url: string = req.url
   if (url in UrlList) return next()
+
   try {
     const path = '.' + url
     if (dynamicResourceList.find(item => item === path)) {
@@ -98,6 +115,8 @@ htpServer.get('*', (req, res, next) => {
     } else {
       dynamicResourceList.push(path)
       const file = readFileSync(path, 'utf-8')
+
+      res.setHeader('Content-Type', matchMimeType(url))
       return res.end(file)
     }
   } catch (error) {
@@ -122,7 +141,7 @@ function watchFile(target: string) {
     timer = setTimeout(() => {
       wsServers.forEach(item => item.send(UPDATE))
       timer = null
-    }, 100);
+    });
   })
 }
 watchFile(template)

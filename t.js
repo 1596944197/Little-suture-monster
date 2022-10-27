@@ -1,1 +1,3 @@
-console.log('fuck you man')   
+document.body.innerHTML += `<h2>测试一下</h2>`
+
+

@@ -5,6 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "测试命令",
+      "program": "${workspaceFolder}/t.mjs",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    },
+    {
       "name": "Nextron: Main",
       "type": "node",
       "request": "attach",

@@ -2,21 +2,20 @@ import { app } from "electron";
 import serve from "electron-serve";
 import { createWindow } from "./helpers";
 import { AutoUploadForSFTP } from "./module/ftpAutoUpload/ftpAutoUpload";
-import { WorkerAsync } from "./module/workServer/worker";
 
 const isProd: boolean = process.env.NODE_ENV === "production";
 
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
 
-WorkerAsync();
+// WorkerAsync();
 
-AutoUploadForSFTP("232323", {
-  username: "2422424",
-  password: "2424242424",
+AutoUploadForSFTP("2323", {
+  username: "232323",
+  password: "232323",
   localDistDir: "D:/code/git-company-code/gdc-aquatic-web",
   remoteDir: "/usr/local/src/apache-tomcat-8.5.23/webapps/aquaticPC",
-  distRename: "aquaticPC",
   buildCommand: "npm run build",
+  packagedDirectory: "dist",
 });
 
 if (isProd) {

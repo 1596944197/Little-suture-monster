@@ -1,6 +1,6 @@
 import { SFTPOptions } from "./types";
 import Client from "ssh2-sftp-client";
-import { exec } from "node:child_process";
+import { execSync } from "node:child_process";
 
 /**
  * ### auto upload
@@ -16,17 +16,13 @@ async function AutoUploadForSFTP(url: string, options: SFTPOptions) {
     console.log("...starting execute command");
 
     const distDir = options.localDistDir;
-    const rename = options.distRename;
+    const directory = options.packagedDirectory;
 
     const cmd = `cd ${distDir} && ${distDir.slice(0, 2)} && ${
       options.buildCommand || "npm run build"
-    } ${rename ? `&& ren dist ${rename}` : ""} `;
+    } `;
 
-    const ChildProcess = await exec(cmd);
-    ChildProcess.on("error", (err) => {
-      console.log("err", err);
-      throw new Error();
-    });
+    execSync(cmd);
 
     const sftp = new Client();
     await sftp.connect({
@@ -39,10 +35,10 @@ async function AutoUploadForSFTP(url: string, options: SFTPOptions) {
     });
 
     const result = await sftp.uploadDir(
-      `${distDir}/${rename}`,
+      `${distDir}/${directory || "dist"}`,
       options.remoteDir
     );
-    console.log(result);
+    console.log("transfer completed", result);
     sftp.end();
   }
 }

@@ -3,6 +3,6 @@ export interface SFTPOptions {
   username: string;
   remoteDir: string;
   localDistDir: string;
-  distRename?: string;
+  packagedDirectory?: string;
   buildCommand?: string;
 }

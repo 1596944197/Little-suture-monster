@@ -13,7 +13,6 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
-    "@types/ssh2-sftp-client": "^9.0.0",
     "electron-serve": "^1.1.0",
     "electron-store": "^8.1.0",
     "lodash-es": "^4.17.21",
@@ -27,6 +26,7 @@
     "@types/lodash-es": "^4.17.6",
     "@types/node": "^16.11.7",
     "@types/react": "^18.0.8",
+    "@types/ssh2-sftp-client": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.32.0",
     "electron": "^20.1.0",

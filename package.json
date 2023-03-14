@@ -3,7 +3,7 @@
   "name": "my-nextron-app",
   "description": "My application description",
   "version": "1.0.0",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "author": "MEI 1596944197@qq.com",
   "main": "app/background.js",
   "scripts": {
     "preinstall": "node ./pre.js",
